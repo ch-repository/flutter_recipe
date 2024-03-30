@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe/route/application.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({super.key});
@@ -8,11 +9,16 @@ class ProductList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 16,),
-        Text("Popular Recipes", style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),),
+        SizedBox(
+          height: 16,
+        ),
+        Text(
+          "Popular Recipes",
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         GridView.count(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -40,54 +46,59 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.grey[200],
-      ),
-      child: SizedBox(
-        height: 500,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                AspectRatio(
-                  aspectRatio: 16 / 14,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                    ),
-                    child: Image.network(
-                      "https://img1.baidu.com/it/u=1417730282,3860880399&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1711818000&t=08085fa395ca81a3787933a1679674e2",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Product Name',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
+    return GestureDetector(
+      onTap: () {
+        Application.router.navigateTo(context, "/recipe_detail");
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.grey[200],
+        ),
+        child: SizedBox(
+          height: 500,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
                 children: [
-                  Icon(Icons.star, color: Colors.amber, size: 20),
-                  SizedBox(width: 4),
-                  Text(
-                    '4.5', // Replace with actual rating
-                    style: TextStyle(fontSize: 14),
-                  ),
+                  AspectRatio(
+                    aspectRatio: 16 / 14,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
+                      child: Image.network(
+                        "https://img1.baidu.com/it/u=1417730282,3860880399&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1711818000&t=08085fa395ca81a3787933a1679674e2",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
                 ],
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Product Name',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  children: [
+                    Icon(Icons.star, color: Colors.amber, size: 20),
+                    SizedBox(width: 4),
+                    Text(
+                      '4.5',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
