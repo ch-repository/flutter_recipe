@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_recipe/route/application.dart";
+import "package:flutter_recipe/route/routes.dart";
 import "package:flutter_recipe/utils/hex_color.dart";
 import "package:flutter_recipe/utils/screen_util.dart";
 import "package:flutter_recipe/widgets/home/category.dart";
@@ -62,7 +63,9 @@ class Home extends StatelessWidget {
           ),
           backgroundColor: HexColor('#ECD71B'),
           foregroundColor: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            Application.router.navigateTo(context, Routes.addRecipe);
+          },
           child: const Icon(Icons.add, size: 32,),
         ),
       ),
